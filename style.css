@@ -52,7 +52,7 @@ button:active {
     transition: all 0.3s;
 }
 
-button:hover {
+button:hover, div.card:hover {
     box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transform: scale(1.05);
