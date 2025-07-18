@@ -1,0 +1,179 @@
+/*** FONTS ***/
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins-Italic.ttf');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins-BoldItalic.ttf');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/*** TAGS ***/
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.75;
+    background-color: white;
+}
+
+button {
+    margin: 10px auto;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background-color: #75d8ff;
+    border: none;
+    color: black;
+    transition: all 0.3s;
+}
+
+button:active {
+    color: white;
+    transition: all 0.3s;
+}
+
+button:hover {
+    box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.3s;
+}
+
+details {
+    padding: 10px 30px 0px 30px;
+}
+
+h1 {
+    font-size: 32px;
+    padding-top: 60px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4, p, b, i, input, textarea, select, label, button {
+    font-size: 16px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 900;
+    padding: 1rem 1rem 0 1rem;
+    background-image: linear-gradient(white, white, white, rgba(255, 255, 255, 0));
+    width: 100%;
+    height: 70px;
+}
+
+iframe {
+    margin: 20px 0px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    min-height: 300px;
+    border: none;
+    border-radius: 12px;
+}
+
+label {
+    font-weight: bold;
+}
+
+li {
+    padding: 5px;
+}
+
+main {
+    padding: 0 2rem 2rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+select {
+    margin: 10px 0;
+}
+
+small {
+    font-size: 13px;
+}
+
+summary {
+    list-style-position: outside;
+    padding: 0px 0px 10px 20px;
+}
+
+textarea {
+    width: calc(100% - 30px);
+    height: 200px;
+    padding: 15px;
+    margin: 10px 0;
+    resize: vertical;
+}
+
+video {
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    background: black;
+}
+
+body, h1, h2, h3, h4, p, a, button, input, select, textarea, b, i {
+    font-family: 'Poppins', BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, button, p.center {
+    text-align: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    color: black;
+    background-color: white;
+}
+
+input, select, textarea {
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2);
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+}
+
+label, input {
+    margin: 5px 0px;
+}
+
+ul, ol {
+    margin: 0;
+}
