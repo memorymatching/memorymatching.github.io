@@ -25,7 +25,7 @@
 
     ```bash
     git clone https://github.com/memorymatching/memorymatching.github.io.git
-    cd memorymatching.github.io.git
+    cd memorymatching.github.io
     ```
 
 3. Open your file explorer
