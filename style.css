@@ -55,15 +55,13 @@ button {
     transition: all 0.3s;
 }
 
-button:active {
-    color: white;
+button:hover {
+    cursor: pointer;
     transition: all 0.3s;
 }
 
-button:hover, div.card:hover {
-    box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transform: scale(1.05);
+button:active {
+    color: white;
     transition: all 0.3s;
 }
 
@@ -180,7 +178,6 @@ summary::marker {
     font-size: 25px;
 }
 
-/* CONTINUE HERE */
 summary h4 {
     padding-left: 20px;
 }
@@ -193,19 +190,42 @@ textarea {
     resize: vertical;
 }
 
-video {
+video, section.video iframe, section.slides iframe {
+    display: block;
     width: 100%;
-    margin: 20px auto;
+    height: 315px;
+    margin: 30px auto;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
     border-radius: 12px;
+    border: none;
     background: black;
+    transition: all 0.3s;
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    width: 100%;
+    overscroll-behavior: none;
+    overflow-x: hidden;
 }
 
 body, h1, h2, h3, h4, p, a, button, input, select, textarea, b, i {
     font-family: 'Poppins', BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, button, p.center {
+body, h1, h2, h3, h4, p, b, i {
+    color: black;
+}
+
+button:hover, .dropdown:hover, .article:hover, video:hover, section.video iframe:hover, section.slides iframe:hover {
+    box-shadow: 2px 4px 3px 2px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: all 0.3s;
+}
+
+h1, h2, h3, button, p.center, small.center, p.btn {
     text-align: center;
 }
 
@@ -216,14 +236,14 @@ h4, p, b, i, input, textarea, select, label, button {
 input, select {
     width: 100%;
     padding: 8px;
-    color: black;
     background-color: white;
 }
 
 input, select, textarea {
     box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2);
     border: 1px solid #dddddd;
-    border-radius: 10px;
+    border-radius: 12px;
+    color: black;
 }
 
 label, input {
@@ -232,4 +252,159 @@ label, input {
 
 ul, ol {
     margin: 0;
+}
+
+/*** CLASSES ***/
+
+button.inline {
+    box-shadow: none;
+    cursor: default;
+    padding: 5px 20px;
+    font-size: 14px;
+    margin: 0;
+}
+
+button.inline:hover {
+    transform: none;
+}
+
+div.btn {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+div.centered-link {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0px 20px;
+}
+
+div.li img.inline.line-start {
+    height: 30px !important;
+}
+
+iframe.full {
+    width: 100vw;
+    border: none;
+    margin: 0;
+    height: calc(100% - 160px);
+}
+
+iframe.lone {
+    margin: 0px !important;
+}
+
+iframe.round {
+    margin: 20px 0px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: calc(100vh - 250px);
+    border: none;
+    border-radius: 12px;
+}
+
+img.external-icon {
+    height: 15px !important;
+}
+
+img.copy-icon {
+    height: 20px !important;
+}
+
+img.inline {
+    height: 30px;
+    object-fit: contain;
+}
+
+img.inline.line-start {
+    margin: 0 20px 0 0 !important;
+}
+
+img.inline.line-end {
+    margin: 0 0 0 20px !important;
+}
+
+img.inline.text {
+    margin: 5px 0px !important;
+    padding: 0 !important;
+}
+
+p.btn {
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+small img.inline, button.inline img {
+    height: 24px;
+}
+
+.rounded-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.rounded-box div.text {
+    width: 300px;
+    padding: 0px 20px;
+}
+
+.rounded-box img:not(button img) {
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.dropdown {
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+.inline {
+    display: inline;
+    margin: 0px 5px !important;
+    vertical-align: middle;
+}
+
+/*** IDS ***/
+
+#bkgd {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#nav-logo {
+    left: 20px;
+}
+
+#nav-logo img {
+    height: 50px;
+}
+
+/*** MEDIA QUERIES ***/
+
+@media screen and (max-width: 850px) {
+    .rounded-box div.text, .rounded-box img:not(button img) {
+        width: calc(100% - 40px);
+    }
 }
