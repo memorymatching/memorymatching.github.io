@@ -1,3 +1,9 @@
+:root {
+    --green: #81CD27;
+    --red: #F2355B;
+    --yellow: #FDBF30;
+}
+
 /*** FONTS ***/
 
 @font-face {
@@ -54,6 +60,7 @@ button {
     color: black;
     font-size: 20px;
     font-weight: normal;
+    width: 200px;
     transition: all 0.3s ease;
 }
 
@@ -242,15 +249,19 @@ button.inline:hover {
 }
 
 button.instructions {
-    background: #FDBF30;
+    background: var(--yellow);
 }
 
 button.play {
-    background: #81CD27;
+    background: var(--green);
 }
 
 button.restart {
-    background: #F2355B !important;
+    background: var(--yellow) !important;
+    font-size: 16px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    width: 100px;
 }
 
 div.btn {
@@ -330,6 +341,14 @@ p.btn {
     margin: 0;
 }
 
+p.time-left {
+    color: var(--red);
+}
+
+p.time-left, p.pairs-found {
+    font-weight: bold;
+}
+
 small img.inline, button.inline img {
     height: 24px;
 }
@@ -351,10 +370,6 @@ small img.inline, button.inline img {
     width: 500px !important;
 }
 
-.two-column div.btns button {
-    width: 200px;
-}
-
 .two-column img:not(button img) {
     width: 300px;
     display: block;
@@ -362,7 +377,7 @@ small img.inline, button.inline img {
     padding: 30px 20px;
 }
 
-.two-column div.text, .two-column div.btns, .two-column div.btns button, .two-column img:not(button img), img.title {
+.two-column div.text, .two-column div.btns, .two-column img:not(button img), button, img.title {
     max-width: calc(100% - 100px);
 }
 
@@ -413,7 +428,7 @@ small img.inline, button.inline img {
         gap: 0px;
         flex-direction: column;
     }
-    .two-column div.text, .two-column div.btns, .two-column div.btns button, .two-column img:not(button img), img.title {
+    .two-column div.text, .two-column div.btns, .two-column img:not(button img), button, img.title {
         max-width: calc(100% - 40px);
     }
 }
