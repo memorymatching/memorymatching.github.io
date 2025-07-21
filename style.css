@@ -54,13 +54,13 @@ button {
     color: black;
     font-size: 20px;
     font-weight: normal;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 button:active {
@@ -113,7 +113,7 @@ li {
 }
 
 main {
-    padding: 0 40px 32px 40px;
+    padding: 0 50px 32px 50px;
     margin: 0 auto;
 }
 
@@ -241,6 +241,18 @@ button.inline:hover {
     transform: none;
 }
 
+button.instructions {
+    background: #FDBF30;
+}
+
+button.play {
+    background: #81CD27;
+}
+
+button.restart {
+    background: #F2355B !important;
+}
+
 div.btn {
     margin: 0;
     padding: 0;
@@ -309,8 +321,7 @@ img.inline.text {
 
 img.title {
     display: block;
-    margin: 40px auto 20px auto;
-    max-width: 100%;
+    margin: 30px auto 0px auto;
 }
 
 p.btn {
@@ -329,25 +340,30 @@ small img.inline, button.inline img {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: 80px;
 }
 
-.two-column div.text, .two-column div.btns {
+.two-column div.btns {
     width: 300px;
-    max-width: 100%;
-    padding: 0px 20px;
+}
+
+.two-column div.text {
+    width: 500px !important;
 }
 
 .two-column div.btns button {
     width: 200px;
-    max-width: 100%;
 }
 
 .two-column img:not(button img) {
     width: 300px;
-    max-width: 100%;
     display: block;
     margin: 0;
     padding: 30px 20px;
+}
+
+.two-column div.text, .two-column div.btns, .two-column div.btns button, .two-column img:not(button img), img.title {
+    max-width: calc(100% - 100px);
 }
 
 .dropdown {
@@ -379,10 +395,6 @@ small img.inline, button.inline img {
     z-index: -1;
 }
 
-#instructions {
-    background: #FDBF30;
-}
-
 #nav-logo {
     left: 20px;
 }
@@ -391,17 +403,17 @@ small img.inline, button.inline img {
     height: 50px;
 }
 
-#play {
-    background: #81CD27;
-}
-
 /*** MEDIA QUERIES ***/
 
-@media screen and (max-width: 759px) {
-    .two-column div.text {
-        width: calc(100% - 40px);
+@media screen and (max-width: 1019px) {
+    main {
+        padding: 0 20px 32px 20px;
     }
-    .two-column img:not(button img) {
-        padding: 80px 20px;
+    .two-column {
+        gap: 0px;
+        flex-direction: column;
+    }
+    .two-column div.text, .two-column div.btns, .two-column div.btns button, .two-column img:not(button img), img.title {
+        max-width: calc(100% - 40px);
     }
 }
