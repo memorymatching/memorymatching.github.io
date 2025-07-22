@@ -100,6 +100,8 @@ const listenCards = () => {
         img.addEventListener('click', (e) => {
             var id = img.id;
             var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
+            var card = boardOrder[index];
+            img.src = `assets/img/${folder}/${card}.png`;
         });
     });
 };
