@@ -39,7 +39,7 @@ const addCards = () => {
     shuffleDeck();
     const board = document.querySelector('div.board');
     board.innerHTML = ``;
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 0; i < 16; i++) {
         board.innerHTML += `<img class="card" id="card${i}" src="assets/img/${folder}/back.png">`;
     };
 };
@@ -98,7 +98,8 @@ const listenInstructions = () => {
 const listenCards = () => {
     document.querySelectorAll('img.card').forEach(img => {
         img.addEventListener('click', (e) => {
-            console.log(img.id);
+            var id = img.id;
+            console.log(parseInt(id.slice(id.indexOf('d') + 1))); // Slice: start (inclusive), end (EXclusive, optional)
         });
     });
 };
