@@ -1,8 +1,12 @@
 # Planning
 
-## Extra Features
+## MVP
 - 180sec countdown timer
 - Shuffle deck, rearrange cards before displaying
+- Style cards on hover (transform scale, box shadow, pointer cursor)
+- Adapt game screen for mobile devices
+
+## Extra Features
 - Points, limited scale, calculated based on time taken and # of moves used
 - Local leaderboard using localStorage, could expand using server later
 - Sounds 

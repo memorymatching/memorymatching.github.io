@@ -85,19 +85,19 @@ details > *:not(summary, div) {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 40px;
     padding-top: 90px;
     margin: 22px 0px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 32px;
     margin: 0px;
     padding: 10px 0px;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 24px;
     margin: 0px;
     padding: 10px 0px;
 }
@@ -116,7 +116,7 @@ label {
 }
 
 li {
-    padding: 5px;
+    padding: 5px 5px 5px 20px;
 }
 
 main {
@@ -141,7 +141,7 @@ select {
 }
 
 small {
-    font-size: 13px;
+    font-size: 16px;
 }
 
 summary {
@@ -209,8 +209,8 @@ h1, h2, h3, button, p.center, small.center, p.btn {
     text-align: center;
 }
 
-h4, p, b, i, input, textarea, select, label {
-    font-size: 16px;
+h4, p, b, i, input, textarea, select, label, li {
+    font-size: 20px;
 }
 
 input, select {
@@ -232,6 +232,7 @@ label, input {
 
 ul, ol {
     margin: 0;
+    padding: 0;
 }
 
 /*** CLASSES ***/
@@ -240,7 +241,7 @@ button.inline {
     box-shadow: none;
     cursor: default;
     padding: 5px 20px;
-    font-size: 14px;
+    font-size: 18px;
     margin: 0;
 }
 
@@ -267,10 +268,9 @@ button.restart {
 div.board {
     /* Shorthand order: row colummn */
     display: grid;
-    grid-template: auto auto / auto auto;
-    gap: 10px 10px;
-    grid-auto-columns: 100px;
-    grid-auto-rows: 100px;
+    grid-template: auto auto auto auto / auto auto auto auto;
+    gap: 20px 20px;
+    width: 600px;
 }
 
 div.btn {
@@ -289,8 +289,18 @@ div.centered-link {
     padding: 0px 20px;
 }
 
-div.li img.inline.line-start {
-    height: 30px !important;
+div.li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.li img {
+    padding: 0px;
+    margin: 0px;
 }
 
 iframe.full {
@@ -383,7 +393,7 @@ small img.inline, button.inline img {
     width: 500px !important;
 }
 
-.two-column img:not(button img) {
+.two-column img:not(button img, div.li img) {
     width: 300px;
     display: block;
     margin: 0;
