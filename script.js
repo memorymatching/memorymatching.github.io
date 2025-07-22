@@ -11,6 +11,10 @@ switch(folder) {
 
 // Keep track of where each card is on board
 var boardOrder = [];
+for (let i = 1; i <= 8; i++) {
+    boardOrder.push(i);
+    boardOrder.push(i);
+};
 
 /*** LISTENERS ***/
 
@@ -25,10 +29,14 @@ const listenPlay = () => {
                 <button class="play restart">Restart</button>
             </div>
             <div class="board"></div>
+            <div class="test"></div>
             </section>
         `;
         listenPlay(); // For restart btn
         addCards();
+        for (i in boardOrder) {
+            document.querySelector('div.test').innerHTML += `<p>${i}</p>`;
+        };
     });
 };
 
@@ -69,6 +77,11 @@ const addCards = () => {
     for (let i = 1; i <= 16; i++) {
         board.innerHTML += `<img class="card" src="assets/img/${folder}/back.png">`;
     };
+};
+
+// Shuffle deck and repopulate board
+const shuffleDeck = () => {
+
 };
 
 /*** HOME ***/
