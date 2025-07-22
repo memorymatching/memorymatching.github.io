@@ -112,12 +112,14 @@ const listenCards = () => {
             img.src = `assets/img/${folder}/${card}.png`;
             flipped.push(card);
             if (flipped.length == 2) {
-                var card1 = flipped[0][0];
-                var card2 = flipped[1][0];
-                if (card1 == card2 && !matched.includes(flipped[0]) && !matched.includes(flipped[1])) {
+                var card1 = flipped[0];
+                var cardNum1 = card1.slice(0, card1.length - 1);
+                var card2 = flipped[1];
+                var cardNum2 = card2.slice(0, card2.length - 1);
+                if (cardNum1 == cardNum2 && !matched.includes(card1) && !matched.includes(card2)) {
                     var oldPairs = parseInt(pPairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
                     pPairs.textContent = `${oldPairs + 1}/8 pairs`;
-                    matched.push(flipped[0], flipped[1]);
+                    matched.push(card1, card2);
                 } else {
                 }
                 flipped = []; // Still need to flip back unmatched cards
