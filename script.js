@@ -12,8 +12,8 @@ switch(folder) {
 // Keep track of where each card is on board
 var boardOrder = [];
 for (let i = 1; i <= 8; i++) {
-    boardOrder.push(i);
-    boardOrder.push(i);
+    boardOrder.push(`${i}a`);
+    boardOrder.push(`${i}b`);
 };
 
 /*** LISTENERS ***/
@@ -34,10 +34,6 @@ const listenPlay = () => {
         `;
         listenPlay(); // For restart btn
         addCards();
-        for (let i = 0; i < boardOrder.length; i++) {
-            test = document.querySelector('div.test');
-            test.innerHTML += `<p>${boardOrder[i]}</p>`;
-        };
     });
 };
 
@@ -82,10 +78,39 @@ const addCards = () => {
 
 // Shuffle deck and repopulate board
 const shuffleDeck = () => {
+    var copy = [...boardOrder];
+    var letters = ['a', 'b'];
+    var shuffled = [];
+    // while (copy.length != 0) {
+    //     // Random: from 0 (inclusive) to multiplied num
+    //     var ranNum = Math.floor(Math.random() * copy.length);
+    //     var ranLet = Math.floor(Math.random() * letters.length);
+    //     var ranCard = `${copy[ranNum]}${letters[ranLet]}`;
+    //     if (copy.includes(ranCard)) {
+    //         shuffled.push(ranCard);
+    //         copy.splice(copy.indexOf(ranCard), 1); // Splice: startIndex, deleteCount
+    //     };
+    // };
 
+    var ranNum = Math.floor(Math.random() * copy.length);
+    var ranLet = Math.floor(Math.random() * letters.length);
+    var ranCard = `${copy[ranNum]}${letters[ranLet]}`;
+    if (copy.includes(ranCard)) {
+        console.log('present');
+        // shuffled.push(ranCard);
+        // copy.splice(copy.indexOf(ranCard), 1); // Splice: startIndex, deleteCount
+    } else {
+        console.log('not present');
+    }
+
+    boardOrder = [...shuffled];
 };
 
 /*** HOME ***/
 
 listenPlay();
 listenInstructions();
+
+console.log(boardOrder);
+shuffleDeck();
+// console.log(boardOrder);
