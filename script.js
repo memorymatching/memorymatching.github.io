@@ -16,9 +16,37 @@ for (let i = 1; i <= 8; i++) {
     boardOrder.push(`${i}b`);
 };
 
+/*** GAME LOGIC ***/
+
+// Shuffle deck and repopulate board
+const shuffleDeck = () => {
+    var copy = [...boardOrder];
+    var shuffled = [];
+    while (copy.length != 0) {
+        // Random: from 0 (inclusive) to multiplied num
+        var ranIndex = Math.floor(Math.random() * copy.length);
+        var ranCard = `${copy[ranIndex]}`;
+        if (copy.includes(ranCard)) {
+            shuffled.push(ranCard);
+            copy.splice(copy.indexOf(ranCard), 1); // Splice: startIndex, deleteCount
+        }
+    };
+    boardOrder = [...shuffled];
+};
+
+// Populate board with card deck (uses shuffleDeck)
+const addCards = () => {
+    shuffleDeck();
+    const board = document.querySelector('div.board');
+    board.innerHTML = ``;
+    for (let i = 1; i <= 16; i++) {
+        board.innerHTML += `<img class="card" id="card${i}" src="assets/img/${folder}/back.png">`;
+    };
+};
+
 /*** LISTENERS ***/
 
-// Add event listeners to all play btns
+// Add event listeners to play btn (uses addCards and itself)
 const listenPlay = () => {
     document.querySelector('button.play').addEventListener('click', (e) => {
         document.querySelector('main').innerHTML = `
@@ -34,10 +62,11 @@ const listenPlay = () => {
         `;
         listenPlay(); // For restart btn
         addCards();
+        listenCards();
     });
 };
 
-// Add event listeners to all instruction btns
+// Add event listeners to instruction btn (uses listenPlay)
 const listenInstructions = () => {
     document.querySelector('button.instructions').addEventListener('click', (e) => {
         document.querySelector('main').innerHTML = `
@@ -65,52 +94,16 @@ const listenInstructions = () => {
     });
 };
 
-/*** GAME ***/
-
-// Populate board with card deck
-const addCards = () => {
-    const board = document.querySelector('div.board');
-    board.innerHTML = ``;
-    for (let i = 1; i <= 16; i++) {
-        board.innerHTML += `<img class="card" src="assets/img/${folder}/back.png">`;
-    };
+// Add event listeners to all cards
+const listenCards = () => {
+    document.querySelectorAll('img.card').forEach(img => {
+        img.addEventListener('click', (e) => {
+            console.log(img.id);
+        });
+    });
 };
 
-// Shuffle deck and repopulate board
-const shuffleDeck = () => {
-    var copy = [...boardOrder];
-    var letters = ['a', 'b'];
-    var shuffled = [];
-    // while (copy.length != 0) {
-    //     // Random: from 0 (inclusive) to multiplied num
-    //     var ranNum = Math.floor(Math.random() * copy.length);
-    //     var ranLet = Math.floor(Math.random() * letters.length);
-    //     var ranCard = `${copy[ranNum]}${letters[ranLet]}`;
-    //     if (copy.includes(ranCard)) {
-    //         shuffled.push(ranCard);
-    //         copy.splice(copy.indexOf(ranCard), 1); // Splice: startIndex, deleteCount
-    //     };
-    // };
-
-    var ranNum = Math.floor(Math.random() * copy.length);
-    var ranLet = Math.floor(Math.random() * letters.length);
-    var ranCard = `${copy[ranNum]}${letters[ranLet]}`;
-    if (copy.includes(ranCard)) {
-        console.log('present');
-        // shuffled.push(ranCard);
-        // copy.splice(copy.indexOf(ranCard), 1); // Splice: startIndex, deleteCount
-    } else {
-        console.log('not present');
-    }
-
-    boardOrder = [...shuffled];
-};
-
-/*** HOME ***/
+/*** HOME SETUP ***/
 
 listenPlay();
 listenInstructions();
-
-console.log(boardOrder);
-shuffleDeck();
-// console.log(boardOrder);
