@@ -18,6 +18,9 @@ for (let i = 1; i <= 8; i++) {
 
 /*** GAME LOGIC ***/
 
+// Keep track of cards flipped
+var flipped = [];
+
 // Shuffle deck and repopulate board
 const shuffleDeck = () => {
     var copy = [...boardOrder];
@@ -98,10 +101,23 @@ const listenInstructions = () => {
 const listenCards = () => {
     document.querySelectorAll('img.card').forEach(img => {
         img.addEventListener('click', (e) => {
+            var pPairs = document.querySelector('p.pairs-found');
             var id = img.id;
             var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
             var card = boardOrder[index];
             img.src = `assets/img/${folder}/${card}.png`;
+            flipped.push(card);
+            if (flipped.length == 2) {
+                var card1 = flipped[0][0];
+                var card2 = flipped[1][0];
+                if (card1 == card2) {
+                    var oldPairs = parseInt(pPairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
+                    pPairs.textContent = `${oldPairs + 1}/8 pairs`;
+                    // Still need to keep track of which cards have been matched (prevent double-counting same match)
+                } else {
+                }
+                flipped = [];
+            }
         });
     });
 };

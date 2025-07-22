@@ -7,6 +7,7 @@
 ## Extra Features
 - Style cards on hover (transform scale, box shadow, pointer cursor)
 - Improve game screen for mobile devices, or add msg specifying min screen size
+- Make timer color start black, then change to red when certain time left
 - Points, limited scale, calculated based on time taken and # of moves used
 - Local leaderboard using localStorage, could expand using server later
 - Sounds 
