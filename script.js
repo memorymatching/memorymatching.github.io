@@ -1,7 +1,9 @@
+const main = document.querySelector('main');
+
 /*** DECK MANAGEMENT ***/
 
 // Detect which card deck is selected
-var folder = document.querySelector('main').className;
+var folder = main.className;
 var deckName = '';
 switch(folder) {
     case 'chem-in-the-house': 
@@ -11,7 +13,7 @@ switch(folder) {
 
 // Keep track of where each card is on board
 var boardOrder = [];
-for (let i = 1; i <= 8; i++) {
+for (let i = 1; i <= 8; i++) { // Only 8 card pairs for now
     boardOrder.push(`${i}a`, `${i}b`);
 };
 
@@ -22,6 +24,9 @@ var flipped = [];
 
 // Keep track of cards matched
 var matched = [];
+
+// Stores interval ID for decreasing time
+var timerInterval = null;
 
 // Shuffle deck and repopulate board
 const shuffleDeck = () => {
@@ -55,7 +60,29 @@ const addCards = () => {
 const decreaseTime = () => {
     var timer = document.querySelector('p.time-left');
     var oldTime = parseInt(timer.textContent.split(' ')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
-    timer.textContent = `${oldTime - 1} sec`; // Still need to end game (show alert, disable card listeners, take to new screen) when timer reaches 0 OR when all pairs found, whichever comes first
+    timer.textContent = `${oldTime - 1} sec`;
+    if (oldTime - 1 == 0) {
+        setTimeout(() => {
+            alert("Time's up!");
+            gameOver(false);
+        }, 1);
+    };
+};
+
+// Show game over screen
+const gameOver = (won) => {
+    main.innerHTML = `
+        <img class="title" src="assets/img/chem-in-the-house/titleBanner.png" alt="Chem in the House">
+        <section class="game-over two-column">
+            <div class="text btns">
+                <p class="center">${won ? 'Congrats on your victory!' : 'Better luck next time!'} Would you like to ${won ? 'play' : 'try'} again?</p>
+                <button class="play">Yes</button>
+            </div>
+            <img src="assets/img/chem-in-the-house/logoTransparent.png" alt="Chem in the House logo">
+        </section>
+    `;
+    clearInterval(timerInterval);
+    listenPlay();
 };
 
 /*** LISTENERS ***/
@@ -63,11 +90,11 @@ const decreaseTime = () => {
 // Add event listeners to play btn (uses addCards and itself)
 const listenPlay = () => {
     document.querySelector('button.play').addEventListener('click', (e) => {
-        document.querySelector('main').innerHTML = `
+        main.innerHTML = `
             <section class="game">
             <div class="board-top">
                 <p class="time-left center">180 sec</p>
-                <p class="pairs-found center">0/8 pairs</p>
+                <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
                 <button class="play restart">Restart</button>
             </div>
             <div class="board"></div>
@@ -77,21 +104,22 @@ const listenPlay = () => {
         listenPlay(); // For restart btn
         addCards();
         listenCards();
-        setInterval(decreaseTime, 1000);
+        clearInterval(timerInterval);
+        timerInterval = setInterval(decreaseTime, 1000);
     });
 };
 
 // Add event listeners to instruction btn (uses listenPlay)
 const listenInstructions = () => {
     document.querySelector('button.instructions').addEventListener('click', (e) => {
-        document.querySelector('main').innerHTML = `
+        main.innerHTML = `
             <img class="title" src="assets/img/${folder}/titleBanner.png" alt="${deckName}">
             <section class="instructions two-column">
                 <div class="text btns">
                     <h3>How to Play</h3>
                     <div class="li">
                         <img class="inline line-start" src="assets/img/goal.png" alt="Target icon">
-                        <p> <b>Goal</b>: Match 8 card pairs in 3 minutes</p>
+                        <p> <b>Goal</b>: Match ${boardOrder.length / 2} card pairs in 3 minutes</p>
                     </div>
                     <ul>
                         <li>To begin, click on a card to flip it over, and try to find its matching pair by clicking on another card</li>
@@ -127,8 +155,12 @@ const listenCards = () => {
                     var cardNum2 = card2.slice(0, card2.length - 1);
                     if (cardNum1 == cardNum2) {
                         var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
-                        pairs.textContent = `${oldPairs + 1}/8 pairs`;
+                        pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
                         matched.push(card1, card2);
+                        if (oldPairs + 1 == boardOrder.length / 2) {
+                            alert("You won!");
+                            gameOver(true);
+                        };
                     } else {
                         setTimeout(() => {
                             document.querySelector(`#card${boardOrder.indexOf(card1)}`).src = `assets/img/${folder}/back.png`;
