@@ -264,6 +264,15 @@ button.restart {
     width: 100px;
 }
 
+div.board {
+    /* Shorthand order: row colummn */
+    display: grid;
+    grid-template: auto auto / auto auto;
+    gap: 10px 10px;
+    grid-auto-columns: 100px;
+    grid-auto-rows: 100px;
+}
+
 div.btn {
     margin: 0;
     padding: 0;
@@ -304,12 +313,16 @@ iframe.round {
     border-radius: 12px;
 }
 
-img.external-icon {
-    height: 15px !important;
+img.card {
+    width: 100%;
 }
 
 img.copy-icon {
     height: 20px !important;
+}
+
+img.external-icon {
+    height: 15px !important;
 }
 
 img.inline {
