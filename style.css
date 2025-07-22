@@ -116,7 +116,7 @@ label {
 }
 
 li {
-    padding: 5px 5px 5px 20px;
+    padding: 5px;
 }
 
 main {
@@ -231,8 +231,8 @@ label, input {
 }
 
 ul, ol {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
 /*** CLASSES ***/
@@ -294,13 +294,10 @@ div.li {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin: 0px;
-    padding: 0px;
 }
 
 div.li img {
-    padding: 0px;
-    margin: 0px;
+    padding-left: 15px;
 }
 
 iframe.full {
