@@ -5,6 +5,7 @@
 - Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
+- Show alert before restarting
 - Add some kind of indicator to show whether or not match is successful (other than whether cards flip back over or pairs found # changes)
 - Style cards on hover (transform scale, box shadow, pointer cursor)
 - Improve game screen for mobile devices, or add msg specifying min screen size

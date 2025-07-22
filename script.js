@@ -51,6 +51,13 @@ const addCards = () => {
     };
 };
 
+// Count down every second
+const decreaseTime = () => {
+    var timer = document.querySelector('p.time-left');
+    var oldTime = parseInt(timer.textContent.split(' ')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
+    timer.textContent = `${oldTime - 1} sec`; // Still need to end game (show alert, disable card listeners, take to new screen) when timer reaches 0 OR when all pairs found, whichever comes first
+};
+
 /*** LISTENERS ***/
 
 // Add event listeners to play btn (uses addCards and itself)
@@ -70,6 +77,7 @@ const listenPlay = () => {
         listenPlay(); // For restart btn
         addCards();
         listenCards();
+        setInterval(decreaseTime, 1000);
     });
 };
 
@@ -105,7 +113,7 @@ const listenInstructions = () => {
 const listenCards = () => {
     document.querySelectorAll('img.card').forEach(img => {
         img.addEventListener('click', (e) => {
-            var pPairs = document.querySelector('p.pairs-found');
+            var pairs = document.querySelector('p.pairs-found');
             var id = img.id;
             var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
             var card = boardOrder[index];
@@ -118,8 +126,8 @@ const listenCards = () => {
                     var card2 = flipped[1];
                     var cardNum2 = card2.slice(0, card2.length - 1);
                     if (cardNum1 == cardNum2) {
-                        var oldPairs = parseInt(pPairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
-                        pPairs.textContent = `${oldPairs + 1}/8 pairs`;
+                        var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
+                        pairs.textContent = `${oldPairs + 1}/8 pairs`;
                         matched.push(card1, card2);
                     } else {
                         setTimeout(() => {
