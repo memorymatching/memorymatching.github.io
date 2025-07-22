@@ -99,7 +99,7 @@ const listenCards = () => {
     document.querySelectorAll('img.card').forEach(img => {
         img.addEventListener('click', (e) => {
             var id = img.id;
-            console.log(parseInt(id.slice(id.indexOf('d') + 1))); // Slice: start (inclusive), end (EXclusive, optional)
+            var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
         });
     });
 };
