@@ -34,8 +34,9 @@ const listenPlay = () => {
         `;
         listenPlay(); // For restart btn
         addCards();
-        for (i in boardOrder) {
-            document.querySelector('div.test').innerHTML += `<p>${i}</p>`;
+        for (let i = 0; i < boardOrder.length; i++) {
+            test = document.querySelector('div.test');
+            test.innerHTML += `<p>${boardOrder[i]}</p>`;
         };
     });
 };
