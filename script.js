@@ -12,14 +12,16 @@ switch(folder) {
 // Keep track of where each card is on board
 var boardOrder = [];
 for (let i = 1; i <= 8; i++) {
-    boardOrder.push(`${i}a`);
-    boardOrder.push(`${i}b`);
+    boardOrder.push(`${i}a`, `${i}b`);
 };
 
 /*** GAME LOGIC ***/
 
 // Keep track of cards flipped
 var flipped = [];
+
+// Keep track of cards matched
+var matched = [];
 
 // Shuffle deck and repopulate board
 const shuffleDeck = () => {
@@ -39,6 +41,8 @@ const shuffleDeck = () => {
 
 // Populate board with card deck (uses shuffleDeck)
 const addCards = () => {
+    flipped = [];
+    matched = [];
     shuffleDeck();
     const board = document.querySelector('div.board');
     board.innerHTML = ``;
@@ -110,13 +114,13 @@ const listenCards = () => {
             if (flipped.length == 2) {
                 var card1 = flipped[0][0];
                 var card2 = flipped[1][0];
-                if (card1 == card2) {
+                if (card1 == card2 && !matched.includes(flipped[0]) && !matched.includes(flipped[1])) {
                     var oldPairs = parseInt(pPairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
                     pPairs.textContent = `${oldPairs + 1}/8 pairs`;
-                    // Still need to keep track of which cards have been matched (prevent double-counting same match)
+                    matched.push(flipped[0], flipped[1]);
                 } else {
                 }
-                flipped = [];
+                flipped = []; // Still need to flip back unmatched cards
             }
         });
     });
