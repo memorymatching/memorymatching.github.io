@@ -69,6 +69,26 @@ const decreaseTime = () => {
     };
 };
 
+// Show game board screen
+const startGame = () => {
+    main.innerHTML = `
+        <section class="game">
+        <div class="board-top">
+            <p class="time-left center">180 sec</p>
+            <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
+            <button class="restart">Restart</button>
+        </div>
+        <div class="board"></div>
+        <div class="test"></div>
+        </section>
+    `;
+    listenRestart(); // For restart btn
+    addCards();
+    listenCards();
+    clearInterval(timerInterval);
+    timerInterval = setInterval(decreaseTime, 1000);
+}
+
 // Show game over screen
 const gameOver = (won) => {
     main.innerHTML = `
@@ -90,22 +110,15 @@ const gameOver = (won) => {
 // Add event listeners to play btn (uses addCards and itself)
 const listenPlay = () => {
     document.querySelector('button.play').addEventListener('click', (e) => {
-        main.innerHTML = `
-            <section class="game">
-            <div class="board-top">
-                <p class="time-left center">180 sec</p>
-                <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
-                <button class="play restart">Restart</button>
-            </div>
-            <div class="board"></div>
-            <div class="test"></div>
-            </section>
-        `;
-        listenPlay(); // For restart btn
-        addCards();
-        listenCards();
-        clearInterval(timerInterval);
-        timerInterval = setInterval(decreaseTime, 1000);
+        startGame();
+    });
+};
+
+const listenRestart = () => {
+    document.querySelector('button.restart').addEventListener('click', (e) => {
+        if(confirm('Are you sure you want to restart the game?')) {
+            startGame();
+        };
     });
 };
 

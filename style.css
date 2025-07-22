@@ -257,7 +257,7 @@ button.play {
 }
 
 button.restart {
-    background: var(--yellow) !important;
+    background: var(--yellow);
     font-size: 16px;
     margin: 10px auto;
     padding: 10px 20px;
