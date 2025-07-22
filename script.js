@@ -19,7 +19,7 @@ const listenPlay = () => {
     document.querySelector('button.play').addEventListener('click', (e) => {
         document.querySelector('main').innerHTML = `
             <section class="game">
-            <div class="board-side">
+            <div class="board-top">
                 <p class="time-left center">180 sec</p>
                 <p class="pairs-found center">0/8 pairs</p>
                 <button class="play restart">Restart</button>
