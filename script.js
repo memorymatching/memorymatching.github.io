@@ -1,7 +1,16 @@
-/*** DECKS ***/
-// const decks = {
-//     chemInTheHouse
-// }
+/*** DECK MANAGEMENT ***/
+
+// Detect which card deck is selected
+var folder = document.querySelector('main').className;
+var deckName = '';
+switch(folder) {
+    case 'chem-in-the-house': 
+        deckName = 'Chem in the House';
+        break;
+};
+
+// Keep track of where each card is on board
+var boardOrder = [];
 
 /*** LISTENERS ***/
 
@@ -27,7 +36,7 @@ const listenInstructions = () => {
     document.querySelectorAll('button.instructions').forEach(btn => {
         btn.addEventListener('click', (e) => {
             document.querySelector('main').innerHTML = `
-                <img class="title" src="assets/img/chemInTheHouse/titleBanner.png" alt="Chem in the House">
+                <img class="title" src="assets/img/${folder}/titleBanner.png" alt="${deckName}">
                 <section class="instructions two-column">
                     <div class="text btns">
                         <h3>How to Play</h3>
@@ -44,12 +53,19 @@ const listenInstructions = () => {
                         <p class="center"><i>Good luck!</i></p>
                         <button class="play">Play</button>
                     </div>
-                    <img src="assets/img/chemInTheHouse/logoTransparent.png" alt="Chem in the House logo">
+                    <img src="assets/img/${folder}/logoTransparent.png" alt="${deckName} logo">
                 </section>
             `;
             listenPlay(); // For new play btn
         });
     });
+};
+
+/*** GAME ***/
+
+// Populate board with card deck
+const addCards = () => {
+    
 };
 
 /*** HOME ***/
