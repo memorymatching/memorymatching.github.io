@@ -270,6 +270,24 @@ div.board {
     grid-template: auto auto auto auto / auto auto auto auto;
     gap: 20px 20px;
     width: 600px;
+    margin: auto;
+}
+
+div.board-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 600px;
+    margin: auto;
+}
+
+div.board-side > * {
+    margin: 30px 10px;
+}
+
+div.board-side button {
+    max-width: none;
 }
 
 div.btn {
@@ -396,7 +414,7 @@ small img.inline, button.inline img {
     padding: 30px 20px;
 }
 
-.two-column div.text, .two-column div.btns, .two-column img:not(button img), button, img.title {
+.two-column div.text, .two-column div.btns, .two-column img:not(button img), button, img.title, div.board-side, div.board {
     max-width: calc(100% - 100px);
 }
 
@@ -447,7 +465,7 @@ small img.inline, button.inline img {
         gap: 0px;
         flex-direction: column;
     }
-    .two-column div.text, .two-column div.btns, .two-column img:not(button img), button, img.title {
+    .two-column div.text, .two-column div.btns, .two-column img:not(button img), button, img.title, div.board-side, div.board {
         max-width: calc(100% - 40px);
     }
 }
