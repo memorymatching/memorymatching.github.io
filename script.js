@@ -1,10 +1,11 @@
-/*** CONSTANTS ***/
-
 const main = document.querySelector('main');
-const rootStyles = getComputedStyle(document.documentElement);
-const green = rootStyles.getPropertyValue('--green');
-const red = rootStyles.getPropertyValue('--red');
-const yellow = rootStyles.getPropertyValue('--yellow');
+
+/*** CSS VARIABLES ***/
+
+var rootStyles = getComputedStyle(document.documentElement);
+var green = rootStyles.getPropertyValue('--green');
+var red = rootStyles.getPropertyValue('--red');
+var yellow = rootStyles.getPropertyValue('--yellow');
 
 /*** DECK MANAGEMENT ***/
 
@@ -24,6 +25,15 @@ for (let i = 1; i <= 8; i++) { // Only 8 card pairs for now
 };
 
 /*** GAME LOGIC ***/
+
+// Stores total time to facilitate changes
+var totalTime = 180;
+
+// Keep track of time passed for point calculation
+var timePassed = 0;
+
+// Keep track of moves for point calculation
+var moves = 0;
 
 // Keep track of cards flipped
 var flipped = [];
@@ -52,8 +62,6 @@ const shuffleDeck = () => {
 
 // Populate board with card deck (uses shuffleDeck)
 const addCards = () => {
-    flipped = [];
-    matched = [];
     shuffleDeck();
     const board = document.querySelector('div.board');
     board.innerHTML = ``;
@@ -67,9 +75,10 @@ const decreaseTime = () => {
     var timer = document.querySelector('p.time-left');
     var oldTime = parseInt(timer.textContent.split(' ')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
     timer.textContent = `${oldTime - 1} sec`;
+    timePassed++;
     if (oldTime - 1 < 11) {
         timer.style.color = `${red}`;
-    }
+    };
     if (oldTime - 1 == 0) {
         setTimeout(() => {
             alert("Time's up!");
@@ -83,7 +92,7 @@ const startGame = () => {
     main.innerHTML = `
         <section class="game">
         <div class="board-top">
-            <p class="time-left center">180 sec</p>
+            <p class="time-left center">${totalTime} sec</p>
             <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
             <button class="restart">Restart</button>
         </div>
@@ -96,7 +105,19 @@ const startGame = () => {
     listenCards();
     clearInterval(timerInterval);
     timerInterval = setInterval(decreaseTime, 1000);
-}
+    flipped = [];
+    matched = [];
+    timePassed = 0;
+    moves = 0;
+};
+
+// Calculate points based on moves used and time taken
+// Formula: points = (boardOrder.length * 1000) / (timePassed * moves)
+// Max points: 1000 = (16 cards * 1000) / (1 sec * 16 moves)
+const calcPoints = () => {
+    points = (boardOrder.length * 1000) / (timePassed * moves);
+    console.log(`${points}`);
+};
 
 // Show game over screen
 const gameOver = (won) => {
@@ -112,6 +133,7 @@ const gameOver = (won) => {
     `;
     clearInterval(timerInterval);
     listenPlay();
+    calcPoints();
 };
 
 /*** LISTENERS ***/
@@ -168,6 +190,7 @@ const listenCards = () => {
             var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
             var card = boardOrder[index];
             if (!flipped.includes(card) && !matched.includes(card)) {
+                moves++;
                 img.src = `assets/img/${folder}/${card}.png`;
                 var thickness = '2px';
                 var outline = `${thickness} solid black`;

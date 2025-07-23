@@ -5,7 +5,6 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Add DB for win/lose msgs, display randomized msg
 - Points, limited scale, calculated based on time taken and # of moves used
 - Local leaderboard using localStorage, could expand using server later
 - Sounds 
@@ -24,4 +23,5 @@
     - Card theme
     - Disable/enable explanations
     - Disable/enable sounds
+- Add DB for win/lose msgs, display randomized msg
 - Improve game screen for mobile devices, or add msg specifying min screen size
