@@ -98,7 +98,7 @@ const gameOver = (won) => {
                 <p class="center">${won ? 'Congrats on your victory!' : 'Better luck next time!'} Would you like to ${won ? 'play' : 'try'} again?</p>
                 <button class="play">Yes</button>
             </div>
-            <img src="assets/img/chem-in-the-house/logoTransparent.png" alt="Chem in the House logo">
+            <img src="assets/img/chem-in-the-house/logo.png" alt="Chem in the House logo">
         </section>
     `;
     clearInterval(timerInterval);
@@ -143,7 +143,7 @@ const listenInstructions = () => {
                     <p class="center"><i>Good luck!</i></p>
                     <button class="play">Play</button>
                 </div>
-                <img src="assets/img/${folder}/logoTransparent.png" alt="${deckName} logo">
+                <img src="assets/img/${folder}/logo.png" alt="${deckName} logo">
             </section>
         `;
         listenPlay(); // For new play btn

@@ -150,7 +150,7 @@ summary {
     margin: 0px 40px;
 }
 
-summary:hover {
+summary:hover, img.card:hover {
     cursor: pointer;
 }
 
@@ -199,7 +199,7 @@ body, h1, h2, h3, h4, p, b, i {
     color: black;
 }
 
-button:hover, .dropdown:hover, .article:hover, video:hover, section.video iframe:hover, section.slides iframe:hover {
+button:hover, .dropdown:hover, .article:hover, video:hover, section.video iframe:hover, section.slides iframe:hover, img.card:hover {
     box-shadow: 2px 4px 3px 2px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
     transition: all 0.3s;
@@ -339,6 +339,8 @@ iframe.round {
 
 img.card {
     width: 100%;
+    border-radius: 15%;
+    transition: all 0.3s;
 }
 
 img.copy-icon {
