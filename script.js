@@ -1,4 +1,10 @@
+/*** CONSTANTS ***/
+
 const main = document.querySelector('main');
+const rootStyles = getComputedStyle(document.documentElement);
+const green = rootStyles.getPropertyValue('--green');
+const red = rootStyles.getPropertyValue('--red');
+const yellow = rootStyles.getPropertyValue('--yellow');
 
 /*** DECK MANAGEMENT ***/
 
@@ -160,24 +166,38 @@ const listenCards = () => {
             var card = boardOrder[index];
             if (!flipped.includes(card) && !matched.includes(card)) {
                 img.src = `assets/img/${folder}/${card}.png`;
+                var thickness = '2px';
+                var outline = `${thickness} solid black`;
+                img.style.outline = outline;
                 flipped.push(card);
                 if (flipped.length == 2) {
-                    var card1 = flipped[0];
-                    var cardNum1 = card1.slice(0, card1.length - 1);
-                    var card2 = flipped[1];
-                    var cardNum2 = card2.slice(0, card2.length - 1);
-                    if (cardNum1 == cardNum2) {
+                    var card1name = flipped[0];
+                    var card1num = card1name.slice(0, card1name.length - 1);
+                    var card1 = document.querySelector(`#card${boardOrder.indexOf(card1name)}`);
+                    var card2name = flipped[1];
+                    var card2num = card2name.slice(0, card2name.length - 1);
+                    var card2 = document.querySelector(`#card${boardOrder.indexOf(card2name)}`);
+                    if (card1num == card2num) {
+                        outline = `${thickness} solid ${green}`
+                        card1.style.outline = outline;
+                        card2.style.outline = outline;
                         var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
                         pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
-                        matched.push(card1, card2);
+                        matched.push(card1name, card2name);
                         if (oldPairs + 1 == boardOrder.length / 2) {
                             alert("You won!");
                             gameOver(true);
                         };
                     } else {
+                        outline = `${thickness} solid ${red}`;
+                        card1.style.outline = outline;
+                        card2.style.outline = outline;
                         setTimeout(() => {
-                            document.querySelector(`#card${boardOrder.indexOf(card1)}`).src = `assets/img/${folder}/back.png`;
-                            document.querySelector(`#card${boardOrder.indexOf(card2)}`).src = `assets/img/${folder}/back.png`;
+                            outline = 'none';
+                            card1.style.outline = outline
+                            card2.style.outline = outline;
+                            card1.src = `assets/img/${folder}/back.png`;
+                            card2.src = `assets/img/${folder}/back.png`;
                         }, 1000);
                     }
                     flipped = [];

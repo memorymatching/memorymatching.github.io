@@ -5,7 +5,7 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Add some kind of indicator to show whether or not match is successful (other than whether cards flip back over or pairs found # changes)
+- Remove animations on hover when cards have already been matched
 - Improve game screen for mobile devices, or add msg specifying min screen size
 - Make timer color start black, then change to red when certain time left
 - Add DB for win/lose msgs, display randomized msg
