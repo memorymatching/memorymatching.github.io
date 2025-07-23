@@ -384,10 +384,6 @@ p.btn {
     margin: 0;
 }
 
-p.time-left {
-    color: var(--red);
-}
-
 p.time-left, p.pairs-found {
     font-weight: bold;
 }

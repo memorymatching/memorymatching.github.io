@@ -5,8 +5,6 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Improve game screen for mobile devices, or add msg specifying min screen size
-- Make timer color start black, then change to red when certain time left
 - Add DB for win/lose msgs, display randomized msg
 - Points, limited scale, calculated based on time taken and # of moves used
 - Local leaderboard using localStorage, could expand using server later
@@ -26,3 +24,4 @@
     - Card theme
     - Disable/enable explanations
     - Disable/enable sounds
+- Improve game screen for mobile devices, or add msg specifying min screen size

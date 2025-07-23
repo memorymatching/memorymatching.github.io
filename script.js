@@ -67,6 +67,9 @@ const decreaseTime = () => {
     var timer = document.querySelector('p.time-left');
     var oldTime = parseInt(timer.textContent.split(' ')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
     timer.textContent = `${oldTime - 1} sec`;
+    if (oldTime - 1 < 11) {
+        timer.style.color = `${red}`;
+    }
     if (oldTime - 1 == 0) {
         setTimeout(() => {
             alert("Time's up!");
