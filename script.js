@@ -181,12 +181,16 @@ const listenCards = () => {
                         outline = `${thickness} solid ${green}`
                         card1.style.outline = outline;
                         card2.style.outline = outline;
+                        card1.classList.add('matched');
+                        card2.classList.add('matched');
                         var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
                         pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
                         matched.push(card1name, card2name);
                         if (oldPairs + 1 == boardOrder.length / 2) {
-                            alert("You won!");
-                            gameOver(true);
+                            setTimeout(() => {
+                                alert("You won!");
+                                gameOver(true);
+                            }, 2);
                         };
                     } else {
                         outline = `${thickness} solid ${red}`;

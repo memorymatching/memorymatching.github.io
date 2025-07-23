@@ -5,7 +5,6 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Remove animations on hover when cards have already been matched
 - Improve game screen for mobile devices, or add msg specifying min screen size
 - Make timer color start black, then change to red when certain time left
 - Add DB for win/lose msgs, display randomized msg
