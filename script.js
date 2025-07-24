@@ -115,11 +115,11 @@ const startGame = () => {
 };
 
 // Calculate points based on moves used and time taken
-// Formula: points = (boardOrder.length * 1000) / (timePassed * moves)
-// Max points: 1000 = (16 cards * 1000) / (1 sec * 16 moves)
+// Formula: points = (boardOrder.length * 20,000) / (timePassed * moves)
+// Max points: 20,000 = (16 cards * 20,000) / (1 sec * 16 moves)
 const calcPoints = () => {
-    points = (boardOrder.length * 1000) / (timePassed * moves);
-    console.log(`${points}`);
+    points = Math.round((boardOrder.length * 20000) / (timePassed * moves));
+    console.log(`(${boardOrder.length} cards * 20,000) / (${timePassed} sec * ${moves} moves) = ${points} points`);
 };
 
 // Show game over screen
@@ -220,7 +220,7 @@ const listenCards = () => {
                                 setTimeout(() => {
                                     alert("You won!");
                                     gameOver(true);
-                                }, 2);
+                                }, 3);
                             };
                         } else {
                             outline = `${thickness} solid ${red}`;
