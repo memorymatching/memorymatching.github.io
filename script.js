@@ -181,59 +181,111 @@ const listenInstructions = () => {
     });
 };
 
+const debounceCards = (img) => {
+    var pairs = document.querySelector('p.pairs-found');
+    var id = img.id;
+    var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
+    var card = boardOrder[index];
+    if (!flipped.includes(card) && !matched.includes(card)) {
+        moves++;
+        img.src = `assets/img/${folder}/${card}.png`;
+        var thickness = '2px';
+        var outline = `${thickness} solid black`;
+        img.style.outline = outline;
+        flipped.push(card);
+        if (flipped.length == 2) {
+            var card1name = flipped[0];
+            var card1num = card1name.slice(0, card1name.length - 1);
+            var card1 = document.querySelector(`#card${boardOrder.indexOf(card1name)}`);
+            var card2name = flipped[1];
+            var card2num = card2name.slice(0, card2name.length - 1);
+            var card2 = document.querySelector(`#card${boardOrder.indexOf(card2name)}`);
+            if (card1num == card2num) {
+                outline = `${thickness} solid ${green}`
+                card1.style.outline = outline;
+                card2.style.outline = outline;
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
+                pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
+                matched.push(card1name, card2name);
+                if (oldPairs + 1 == boardOrder.length / 2) {
+                    setTimeout(() => {
+                        alert("You won!");
+                        gameOver(true);
+                    }, 2);
+                };
+            } else {
+                outline = `${thickness} solid ${red}`;
+                card1.style.outline = outline;
+                card2.style.outline = outline;
+                setTimeout(() => {
+                    outline = 'none';
+                    card1.style.outline = outline
+                    card2.style.outline = outline;
+                    card1.src = `assets/img/${folder}/back.png`;
+                    card2.src = `assets/img/${folder}/back.png`;
+                }, 1000);
+            };
+            flipped = [];
+        };
+    };
+};
+
 // Add event listeners to all cards
 const listenCards = () => {
     document.querySelectorAll('img.card').forEach(img => {
         img.addEventListener('click', (e) => {
-            var pairs = document.querySelector('p.pairs-found');
-            var id = img.id;
-            var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
-            var card = boardOrder[index];
-            if (!flipped.includes(card) && !matched.includes(card)) {
-                moves++;
-                img.src = `assets/img/${folder}/${card}.png`;
-                var thickness = '2px';
-                var outline = `${thickness} solid black`;
-                img.style.outline = outline;
-                flipped.push(card);
-                if (flipped.length == 2) {
-                    var card1name = flipped[0];
-                    var card1num = card1name.slice(0, card1name.length - 1);
-                    var card1 = document.querySelector(`#card${boardOrder.indexOf(card1name)}`);
-                    var card2name = flipped[1];
-                    var card2num = card2name.slice(0, card2name.length - 1);
-                    var card2 = document.querySelector(`#card${boardOrder.indexOf(card2name)}`);
-                    if (card1num == card2num) {
-                        outline = `${thickness} solid ${green}`
-                        card1.style.outline = outline;
-                        card2.style.outline = outline;
-                        card1.classList.add('matched');
-                        card2.classList.add('matched');
-                        var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
-                        pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
-                        matched.push(card1name, card2name);
-                        flipped = [];
-                        if (oldPairs + 1 == boardOrder.length / 2) {
-                            setTimeout(() => {
-                                alert("You won!");
-                                gameOver(true);
-                            }, 2);
-                        };
-                    } else {
-                        outline = `${thickness} solid ${red}`;
-                        card1.style.outline = outline;
-                        card2.style.outline = outline;
-                        setTimeout(() => {
-                            outline = 'none';
-                            card1.style.outline = outline
+            setTimeout(() => {
+                var pairs = document.querySelector('p.pairs-found');
+                var id = img.id;
+                var index = parseInt(id.slice(id.indexOf('d') + 1)); // Slice: start (inclusive), end (EXclusive, optional)
+                var card = boardOrder[index];
+                if (!flipped.includes(card) && !matched.includes(card)) {
+                    moves++;
+                    img.src = `assets/img/${folder}/${card}.png`;
+                    var thickness = '2px';
+                    var outline = `${thickness} solid black`;
+                    img.style.outline = outline;
+                    flipped.push(card);
+                    if (flipped.length == 2) {
+                        var card1name = flipped[0];
+                        var card1num = card1name.slice(0, card1name.length - 1);
+                        var card1 = document.querySelector(`#card${boardOrder.indexOf(card1name)}`);
+                        var card2name = flipped[1];
+                        var card2num = card2name.slice(0, card2name.length - 1);
+                        var card2 = document.querySelector(`#card${boardOrder.indexOf(card2name)}`);
+                        if (card1num == card2num) {
+                            outline = `${thickness} solid ${green}`
+                            card1.style.outline = outline;
                             card2.style.outline = outline;
-                            card1.src = `assets/img/${folder}/back.png`;
-                            card2.src = `assets/img/${folder}/back.png`;
-                            flipped = []; // Must be inside timeout to prevent double-clicking bug
-                        }, 1000);
+                            card1.classList.add('matched');
+                            card2.classList.add('matched');
+                            var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
+                            pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
+                            matched.push(card1name, card2name);
+                            if (oldPairs + 1 == boardOrder.length / 2) {
+                                setTimeout(() => {
+                                    alert("You won!");
+                                    gameOver(true);
+                                }, 2);
+                            };
+                        } else {
+                            outline = `${thickness} solid ${red}`;
+                            card1.style.outline = outline;
+                            card2.style.outline = outline;
+                            setTimeout(() => {
+                                outline = 'none';
+                                card1.style.outline = outline
+                                card2.style.outline = outline;
+                                card1.src = `assets/img/${folder}/back.png`;
+                                card2.src = `assets/img/${folder}/back.png`;
+                            }, 1000);
+                        };
+                        flipped = [];
                     };
                 };
-            };
+            }, 1);
         });
     });
 };
