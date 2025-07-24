@@ -212,6 +212,7 @@ const listenCards = () => {
                         var oldPairs = parseInt(pairs.textContent.split('/')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
                         pairs.textContent = `${oldPairs + 1}/${boardOrder.length / 2} pairs`;
                         matched.push(card1name, card2name);
+                        flipped = [];
                         if (oldPairs + 1 == boardOrder.length / 2) {
                             setTimeout(() => {
                                 alert("You won!");
@@ -228,9 +229,9 @@ const listenCards = () => {
                             card2.style.outline = outline;
                             card1.src = `assets/img/${folder}/back.png`;
                             card2.src = `assets/img/${folder}/back.png`;
+                            flipped = []; // Must be inside timeout to prevent double-clicking bug
                         }, 1000);
-                    }
-                    flipped = [];
+                    };
                 };
             };
         });
