@@ -238,6 +238,22 @@ ul, ol {
 
 /*** CLASSES ***/
 
+button.delete {
+    position: absolute;
+    top: calc((100% - 36px) / 2);
+    right: 20px;
+    color: white;
+    background: var(--red);
+    font-size: 16px;
+    padding: 5px 10px;
+    width: fit-content;
+}
+
+button.delete:active {
+    color: black;
+    transition: all 0.3s;
+}
+
 button.inline {
     box-shadow: none;
     cursor: default;
@@ -306,6 +322,22 @@ div.centered-link {
     width: fit-content;
     margin: 0 auto;
     padding: 0px 20px;
+}
+
+div.score {
+    padding: 20px;
+    margin: 20px 0px;
+    border-radius: 12px;
+    position: relative;
+    background-color: #ededed;
+}
+
+div.score small {
+    color: #666666;
+}
+
+div.score > * {
+    margin: 0px;
 }
 
 div.li {

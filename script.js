@@ -24,6 +24,16 @@ for (let i = 1; i <= 8; i++) { // Only 8 card pairs for now
     boardOrder.push(`${i}a`, `${i}b`);
 };
 
+/*** LEADERBOARD ***/
+
+var scores;
+try {
+    scores = JSON.parse(localStorage.getItem('scores')) || [];
+} catch (e) {
+    console.error('Error loading leaderboard:', e);
+    scores = [];
+}
+
 /*** GAME LOGIC ***/
 
 // Stores total time to facilitate changes
@@ -94,13 +104,13 @@ const decreaseTime = () => {
 const startGame = () => {
     main.innerHTML = `
         <section class="game">
-        <div class="board-top">
-            <p class="time-left center">${totalTime} sec</p>
-            <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
-            <button class="restart">Restart</button>
-        </div>
-        <div class="board"></div>
-        <div class="test"></div>
+            <div class="board-top">
+                <p class="time-left center">${totalTime} sec</p>
+                <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
+                <button class="restart">Restart</button>
+            </div>
+            <div class="board"></div>
+            <div class="test"></div>
         </section>
     `;
     listenRestart(); // For restart btn
@@ -118,8 +128,25 @@ const startGame = () => {
 // Formula: points = (boardOrder.length * 20,000) / (timePassed * moves)
 // Max points: 20,000 = (16 cards * 20,000) / (1 sec * 16 moves)
 const calcPoints = () => {
-    points = Math.round((boardOrder.length * 20000) / (timePassed * moves));
-    console.log(`(${boardOrder.length} cards * 20,000) / (${timePassed} sec * ${moves} moves) = ${points} points`);
+    var timestamp = new Date().toLocaleString();
+    var points = Math.round((boardOrder.length * 20000) / (timePassed * moves));
+    scores.push({timestamp, points});
+    localStorage.setItem('scores', JSON.stringify(scores));
+
+    console.log(`(${boardOrder.length} cards * 20,000) / (${timePassed} sec * ${moves} moves) = ${points} points`); // Just for testing, still need to remove
+};
+
+// Show leaderboard with points from previous gameplays
+const showLeaderboard = () => {
+    leaderboard = document.querySelector('section.leaderboard');
+    leaderboard.innerHTML = scores.map((item, index) => `
+        <div class="score">
+            <small>${item.timestamp}</small>
+            <p>${item.points} points</p>
+            <button class="delete" data-index="${index}">Delete</button>
+        </div>
+    `).join('');
+    deleteScore();
 };
 
 // Show game over screen
@@ -133,10 +160,12 @@ const gameOver = (won) => {
             </div>
             <img src="assets/img/chem-in-the-house/logo.png" alt="Chem in the House logo">
         </section>
+        <section class="leaderboard"></section>
     `;
     clearInterval(timerInterval);
     listenPlay();
     calcPoints();
+    showLeaderboard();
 };
 
 /*** LISTENERS ***/
@@ -244,7 +273,21 @@ const listenCards = () => {
     });
 };
 
+// Add event listeners to all delete btns in scores
+const deleteScore = () => {
+    document.querySelectorAll('button.delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if(confirm('Are you sure you want to delete this score?')) {
+                scores.splice(e.target.dataset.index, 1);
+                localStorage.setItem('scores', JSON.stringify(scores));
+                showLeaderboard();
+            };
+        });
+    });
+};
+
 /*** HOME SETUP ***/
 
 listenPlay();
 listenInstructions();
+showLeaderboard();

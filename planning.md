@@ -5,8 +5,8 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Points, limited scale, calculated based on time taken and # of moves used
-- Local leaderboard using localStorage, could expand using server later
+- Local leaderboard using localStorage, could expand using server later (display in home and game over screens, add title "Past Games", show placeholder text when no entries to display, ensure placeholder shown even if user deletes all entries without reloading page)
+- Sort leaderboard by points? Differentiate which was the last game played on game over screen, special bkgd for top 3 (if applicable)
 - Sounds 
     - Cards flipping
     - Succesful matches
