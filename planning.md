@@ -5,9 +5,11 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Local leaderboard using localStorage, show placeholder text when no entries to display, ensure placeholder shown even if user deletes all entries without reloading page
-- Sort leaderboard by points? Differentiate which was the last game played on game over screen, special bkgd for top 3 (if applicable)
-- Migrate to server later
+- Local leaderboard using localStorage
+    - Show placeholder text when no entries to display, ensure placeholder shown even if user deletes all entries without reloading page
+    - Sort leaderboard by points?
+    - Differentiate which was the last game played on game over screen, special bkgd for top 3 (if applicable)
+    - Migrate to server later
 - Sounds 
     - Cards flipping
     - Succesful matches
