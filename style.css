@@ -324,6 +324,17 @@ div.centered-link {
     padding: 0px 20px;
 }
 
+div.li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+div.li img {
+    padding-left: 15px;
+}
+
 div.score {
     padding: 20px;
     margin: 20px 0px;
@@ -338,17 +349,6 @@ div.score small {
 
 div.score > * {
     margin: 0px;
-}
-
-div.li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-div.li img {
-    padding-left: 15px;
 }
 
 iframe.full {
@@ -418,6 +418,15 @@ p.btn {
 
 p.time-left, p.pairs-found {
     font-weight: bold;
+}
+
+section.leaderboard {
+    margin-top: 30px;
+}
+
+section.leaderboard  h3 {
+    background: rgb(194, 194, 194);
+    border-radius: 12px;
 }
 
 small img.inline, button.inline img {

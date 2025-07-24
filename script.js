@@ -139,7 +139,8 @@ const calcPoints = () => {
 // Show leaderboard with points from previous gameplays
 const showLeaderboard = () => {
     leaderboard = document.querySelector('section.leaderboard');
-    leaderboard.innerHTML = scores.map((item, index) => `
+    leaderboard.innerHTML = `<h3>Past Games</h3>`;
+    leaderboard.innerHTML += scores.map((item, index) => `
         <div class="score">
             <small>${item.timestamp}</small>
             <p>${item.points} points</p>
