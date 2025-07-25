@@ -136,7 +136,14 @@ const calcPoints = () => {
 
 // Show leaderboard with points from previous gameplays
 const showLeaderboard = () => {
-    leaderboard = document.querySelector('section.leaderboard');
+    var scoresArr = localStorage.getItem('scores');
+    var scoresObj = scoresArr ? JSON.parse(scoresArr) : {};
+    var sortedScores = Object.fromEntries(
+        Object.entries(scoresObj).sort(([, a], [, b]) => a.points - b.points)
+    );
+    console.log(sortedScores);
+
+    var leaderboard = document.querySelector('section.leaderboard');
     leaderboard.innerHTML = scores.length == 0 ? `` : `<h3>Past Games</h3>`;
     leaderboard.innerHTML += scores.map((item, index) => `
         <div class="score">
@@ -248,7 +255,7 @@ const listenCards = () => {
                                 setTimeout(() => {
                                     alert("You won!");
                                     gameOver(true);
-                                }, 3);
+                                }, 10);
                             };
                         } else {
                             outline = `${thickness} solid ${red}`;
