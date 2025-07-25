@@ -6,8 +6,7 @@
 
 ## Extra Features
 - Local leaderboard using localStorage
-    - Sort leaderboard by points? Convert to array first
-    - Differentiate which was the last game played on game over screen
+    - Differentiate which was the last game
     - Differentiate top 3 (if enough scores)
     - Display moves and time taken underneath/next to each score
     - Migrate to server later
