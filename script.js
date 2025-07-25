@@ -136,12 +136,11 @@ const calcPoints = () => {
 
 // Show leaderboard with points from previous gameplays
 const showLeaderboard = () => {
-    var scoresArr = localStorage.getItem('scores');
-    var scoresObj = scoresArr ? JSON.parse(scoresArr) : {};
-    var sortedScores = Object.fromEntries(
-        Object.entries(scoresObj).sort(([, a], [, b]) => a.points - b.points)
-    );
-    console.log(sortedScores);
+    var scoresObj = JSON.parse(localStorage.getItem('scores'));
+    if (scoresObj) {
+        sortedScores = scoresObj.sort((a, b) => b.points - a.points);
+        console.log(sortedScores);
+    };
 
     var leaderboard = document.querySelector('section.leaderboard');
     leaderboard.innerHTML = scores.length == 0 ? `` : `<h3>Past Games</h3>`;
