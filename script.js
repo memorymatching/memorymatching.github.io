@@ -3,7 +3,13 @@ const main = document.querySelector('main');
 /*** CSS VARIABLES ***/
 
 var rootStyles = getComputedStyle(document.documentElement);
+var blue = rootStyles.getPropertyValue('--blue');
+var bronze = rootStyles.getPropertyValue('--bronze');
+var cream = rootStyles.getPropertyValue('--cream');
+var darkGray = rootStyles.getPropertyValue('--darkGray');
 var green = rootStyles.getPropertyValue('--green');
+var lightGray = rootStyles.getPropertyValue('--lightGray');
+var midGray = rootStyles.getPropertyValue('--midGray');
 var red = rootStyles.getPropertyValue('--red');
 var yellow = rootStyles.getPropertyValue('--yellow');
 
@@ -144,17 +150,21 @@ const showLeaderboard = () => {
         scoresByPoints = JSON.parse(JSON.stringify(scoresObj)).sort((a, b) => b.points - a.points);
         scoresByTimestamps = JSON.parse(JSON.stringify(scoresObj)).sort((a, b) => b.timestamp.localeCompare(a.timestamp));
     };
-    console.log('\nBy points:')
-    console.log(scoresByPoints);
-    console.log('\nBy timestamps:')
-    console.log(scoresByTimestamps);
-
     var leaderboard = document.querySelector('section.leaderboard');
     leaderboard.innerHTML = scores.length == 0 ? `` : `<h3>Past Games</h3>`;
     leaderboard.innerHTML += scoresByPoints.map(score => `
         <div class="score">
             <small>${score.timestamp}</small>
             <p>${score.points} points</p>
+
+            ${scoresByPoints.findIndex(s => s.points == score.points) == 0 ? '<p class="tag place1">1st Place</p>' : ''}
+
+            ${scoresByPoints.findIndex(s => s.points == score.points) == 1 ? '<p class="tag place2">2nd Place</p>' : ''}
+
+            ${scoresByPoints.findIndex(s => s.points == score.points) == 2 ? '<p class="tag place3">3rd Place</p>' : ''}
+
+            ${scoresByTimestamps.findIndex(s => s.timestamp == score.timestamp) == 0 ? '<p class="tag most-recent">Most Recent</p>' : ''}
+
             <button class="delete" data-index="${scoresByPoints.findIndex(s => s.timestamp == score.timestamp)}">Delete</button>
         </div>
     `).join('');

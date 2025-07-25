@@ -1,5 +1,11 @@
 :root {
+    --blue: #75d8ff;
+    --bronze: #ed8a27;
+    --cream: #dddddd;
+    --darkGray: #666666;
     --green: #81CD27;
+    --lightGray: #ededed;
+    --midGray: #c2c2c2;
     --red: #F2355B;
     --yellow: #FDBF30;
 }
@@ -55,7 +61,7 @@ button {
     margin: 30px auto;
     padding: 20px 20px;
     border-radius: 40px;
-    background-color: #75d8ff;
+    background-color: var(--blue);
     border: none;
     color: black;
     font-size: 20px;
@@ -140,8 +146,9 @@ select {
     margin: 10px 0;
 }
 
-small {
-    font-size: 16px;
+small, small > * {
+    font-size: 16px !important;
+    color: var(--darkGray) !important;
 }
 
 summary {
@@ -223,7 +230,7 @@ input, select {
 
 input, select, textarea {
     box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2); /* h-offset v-offset blur spread color */
-    border: 1px solid #dddddd;
+    border: 1px solid var(--cream);
     border-radius: 12px;
     color: black;
 }
@@ -346,11 +353,7 @@ div.score {
     margin: 20px 0px;
     border-radius: 12px;
     position: relative;
-    background-color: #ededed;
-}
-
-div.score small {
-    color: #666666;
+    background-color: var(--lightGray);
 }
 
 div.score > * {
@@ -431,12 +434,36 @@ section.leaderboard {
 }
 
 section.leaderboard  h3 {
-    background: rgb(194, 194, 194);
+    background: var(--midGray);
     border-radius: 12px;
 }
 
 small img.inline, button.inline img {
     height: 24px;
+}
+
+.most-recent {
+    background: var(--blue);
+}
+
+.place1 {
+    background: var(--yellow);
+}
+
+.place2 {
+    background: var(--midGray);
+}
+
+.place3 {
+    background: var(--bronze);
+}
+
+.tag {
+    margin-top: 5px !important;
+    padding: 0px 10px;
+    border-radius: 12px;
+    font-size: 16px;
+    width: fit-content;
 }
 
 .two-column {
