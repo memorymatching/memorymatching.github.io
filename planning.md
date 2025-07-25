@@ -5,9 +5,7 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
-- Local leaderboard using localStorage
-    - Display moves and time taken underneath/next to each score
-    - Migrate to server later
+- Make timer show both minutes and seconds separated
 - Sounds 
     - Cards flipping
     - Succesful matches
@@ -26,3 +24,4 @@
     - Disable/enable sounds
 - Add DB for win/lose msgs, display randomized msg
 - Improve game screen for mobile devices, or add msg specifying min screen size
+- Migrate local leaderboard to server

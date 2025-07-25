@@ -130,13 +130,13 @@ const startGame = () => {
     moves = 0;
 };
 
-// Calculate points based on moves used and time taken
-// Formula: points = (boardOrder.length * 20,000) / (timePassed * moves)
-// Max points: 20,000 = (16 cards * 20,000) / (1 sec * 16 moves)
+// Calculate points based on total cards, time taken, and moves used
 const calcPoints = () => {
     var timestamp = new Date().toLocaleString();
+    // Formula: points = (boardOrder.length * 20,000) / (timePassed * moves)
+    // Max points: 20,000 = (16 cards * 20,000) / (1 sec * 16 moves)
     var points = Math.round((boardOrder.length * 20000) / (timePassed * moves));
-    scores.push({timestamp, points});
+    scores.push({timestamp, points, timePassed, moves});
     localStorage.setItem('scores', JSON.stringify(scores));
 };
 
@@ -156,6 +156,7 @@ const showLeaderboard = () => {
         <div class="score">
             <small>${score.timestamp}</small>
             <p>${score.points} points</p>
+            <small>${score.timePassed} sec, ${score.moves} moves</small>
 
             ${scoresByPoints.findIndex(s => s.points == score.points) == 0 ? '<p class="tag place1">1st Place</p>' : ''}
 
