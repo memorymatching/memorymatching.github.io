@@ -137,18 +137,18 @@ const calcPoints = () => {
 // Show leaderboard with points from previous gameplays
 const showLeaderboard = () => {
     var scoresObj = JSON.parse(localStorage.getItem('scores'));
+    var sortedScores = [];
     if (scoresObj) {
         sortedScores = scoresObj.sort((a, b) => b.points - a.points);
-        console.log(sortedScores);
     };
 
     var leaderboard = document.querySelector('section.leaderboard');
     leaderboard.innerHTML = scores.length == 0 ? `` : `<h3>Past Games</h3>`;
-    leaderboard.innerHTML += scores.map((item, index) => `
+    leaderboard.innerHTML += sortedScores.map(score => `
         <div class="score">
-            <small>${item.timestamp}</small>
-            <p>${item.points} points</p>
-            <button class="delete" data-index="${index}">Delete</button>
+            <small>${score.timestamp}</small>
+            <p>${score.points} points</p>
+            <button class="delete" data-index="${sortedScores.findIndex(s => s.timestamp == score.timestamp)}">Delete</button>
         </div>
     `).join('');
     deleteScore();
