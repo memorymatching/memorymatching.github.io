@@ -102,7 +102,7 @@ const decreaseTime = () => {
         setTimeout(() => {
             alert("Time's up!");
             gameOver(false);
-        }, 1);
+        }, 10);
     };
 };
 
@@ -186,7 +186,6 @@ const gameOver = (won) => {
     `;
     clearInterval(timerInterval);
     listenPlay();
-    calcPoints();
     showLeaderboard();
 };
 
@@ -270,8 +269,9 @@ const listenCards = () => {
                             if (oldPairs + 1 == boardOrder.length / 2) {
                                 setTimeout(() => {
                                     alert("You won!");
+                                    calcPoints();
                                     gameOver(true);
-                                }, 10);
+                                }, 20);
                             };
                         } else {
                             outline = `${thickness} solid ${red}`;

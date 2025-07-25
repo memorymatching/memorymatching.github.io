@@ -6,8 +6,6 @@
 
 ## Extra Features
 - Local leaderboard using localStorage
-    - Differentiate which was the last game
-    - Differentiate top 3 (if enough scores)
     - Display moves and time taken underneath/next to each score
     - Migrate to server later
 - Sounds 
