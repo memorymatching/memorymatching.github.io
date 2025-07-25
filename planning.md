@@ -6,8 +6,7 @@
 
 ## Extra Features
 - Local leaderboard using localStorage
-    - Show placeholder text when no entries to display, ensure placeholder shown even if user deletes all entries without reloading page
-    - Sort leaderboard by points?
+    - Sort leaderboard by points? Convert to array first
     - Differentiate which was the last game played on game over screen, special bkgd for top 3 (if applicable)
     - Migrate to server later
 - Sounds 

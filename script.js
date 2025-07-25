@@ -132,14 +132,12 @@ const calcPoints = () => {
     var points = Math.round((boardOrder.length * 20000) / (timePassed * moves));
     scores.push({timestamp, points});
     localStorage.setItem('scores', JSON.stringify(scores));
-
-    console.log(`(${boardOrder.length} cards * 20,000) / (${timePassed} sec * ${moves} moves) = ${points} points`); // Just for testing, still need to remove
 };
 
 // Show leaderboard with points from previous gameplays
 const showLeaderboard = () => {
     leaderboard = document.querySelector('section.leaderboard');
-    leaderboard.innerHTML = `<h3>Past Games</h3>`;
+    leaderboard.innerHTML = scores.length == 0 ? `` : `<h3>Past Games</h3>`;
     leaderboard.innerHTML += scores.map((item, index) => `
         <div class="score">
             <small>${item.timestamp}</small>
