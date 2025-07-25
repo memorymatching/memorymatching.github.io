@@ -5,6 +5,7 @@
 - ✅ Shuffle deck, rearrange cards before displaying
 
 ## Extra Features
+- Handle ties by showing place tag for both (not very likely to get exact same score, but possible)
 - Make timer show both minutes and seconds separated
 - Sounds 
     - Cards flipping
