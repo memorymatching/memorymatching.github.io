@@ -140,10 +140,13 @@ const showLeaderboard = () => {
     var scoresByPoints = [];
     var scoresByTimestamps = [];
     if (scoresObj) {
-        scoresByPoints = scoresObj.sort((a, b) => b.points - a.points);
-        scoresByTimestamps = scoresObj.sort((a, b) => b.timestamp - a.timestamp);
+        // JSON.parse(JSON.stringify(object)) makes deep copy, allows multiple sorted versions
+        scoresByPoints = JSON.parse(JSON.stringify(scoresObj)).sort((a, b) => b.points - a.points);
+        scoresByTimestamps = JSON.parse(JSON.stringify(scoresObj)).sort((a, b) => b.timestamp.localeCompare(a.timestamp));
     };
-    console.log(scoresObj);
+    console.log('\nBy points:')
+    console.log(scoresByPoints);
+    console.log('\nBy timestamps:')
     console.log(scoresByTimestamps);
 
     var leaderboard = document.querySelector('section.leaderboard');
