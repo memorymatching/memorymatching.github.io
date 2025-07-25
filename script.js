@@ -42,7 +42,7 @@ try {
 
 /*** GAME LOGIC ***/
 
-// Stores total time to facilitate changes
+// Stores total time (in seconds) to facilitate changes
 var totalTime = 180;
 
 // Keep track of time passed for point calculation
@@ -92,13 +92,20 @@ const addCards = () => {
 // Count down every second
 const decreaseTime = () => {
     var timer = document.querySelector('p.time-left');
-    var oldTime = parseInt(timer.textContent.split(' ')[0]); // Split: separatorString, limitIndex (EXclusive, optional)
-    timer.textContent = `${oldTime - 1} sec`;
+    var oldTime = timer.textContent.split(' ')[0].split(':'); // Split: separatorString, limitIndex (EXclusive, optional)
+    var min = parseInt(oldTime[0]);
+    var sec = parseInt(oldTime[1]);
+    sec--;
     timePassed++;
-    if (oldTime - 1 < 11) {
+    if (sec < 0) {
+        min--;
+        sec = 59;
+    }
+    timer.textContent = `${min}:${sec < 10 ? '0' + sec : sec}`;
+    if (min == 0 && sec < 11) {
         timer.style.color = `${red}`;
     };
-    if (oldTime - 1 == 0) {
+    if (min == 0 && sec == 0) {
         setTimeout(() => {
             alert("Time's up!");
             gameOver(false);
@@ -111,7 +118,7 @@ const startGame = () => {
     main.innerHTML = `
         <section class="game">
             <div class="board-top">
-                <p class="time-left center">${totalTime} sec</p>
+                <p class="time-left center">${Math.floor(totalTime / 60)}:${totalTime % 60 < 10 ? '0' + totalTime % 60 : totalTime % 60}</p>
                 <p class="pairs-found center">0/${boardOrder.length / 2} pairs</p>
                 <button class="restart">Restart</button>
             </div>
